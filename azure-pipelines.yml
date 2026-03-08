@@ -1,0 +1,20 @@
+name: sampleApp_$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+- none
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build
+    pool:
+     name: Default
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: false
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
